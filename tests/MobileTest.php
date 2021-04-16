@@ -6,6 +6,8 @@ use App\Call;
 use App\Mobile;
 use Mockery as m;
 use App\Providers\MyProvider;
+use App\Services\ContactService;
+use Exception;
 use PHPUnit\Framework\TestCase;
 
 
@@ -34,6 +36,18 @@ class MobileTest extends TestCase
 		$call = $mockMobile->makeCallByName('Andres');
 
 		$this->assertEquals(Call::class, get_class($call));
+	}
+
+	/** @test */
+	public function it_returns_an_exception_when_there_is_no_valid_contact_supplied()
+	{
+		try {
+			ContactService::findByName('Undefined');
+		} catch (\Exception $e) {
+			$error = $e->getMessage();
+		}
+
+		$this->assertEquals(Exception::class, get_class($e));
 	}
 
 }

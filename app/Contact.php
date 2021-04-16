@@ -5,9 +5,12 @@ namespace App;
 
 class Contact
 {
-	
-	function __construct()
+	public string $name;
+	public string $number;
+
+	function __construct(string $name, string $number)
 	{
-		# code...
+		$this->name = $name;
+		$this->number = $number;
 	}
 }
