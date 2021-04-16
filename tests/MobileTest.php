@@ -6,6 +6,7 @@ use App\Call;
 use App\Mobile;
 use Mockery as m;
 use App\Providers\MyProvider;
+use App\Providers\ProviderFactory;
 use App\Services\ContactService;
 use Exception;
 use PHPUnit\Framework\TestCase;
@@ -67,5 +68,20 @@ class MobileTest extends TestCase
 		$this->assertEquals($result, "The message 'Hi there!' was sent to 953486446");
 	}
 
+	/** @test */
+	public function it_will_assert_true_if_the_class_type_match_for_my_provider()
+	{
+		$provider = new ProviderFactory(new MyProvider());
+
+		$this->assertEquals(MyProvider::class, get_class($provider->provider));
+	}
+
+	/** @test */
+	public function it_will_assert_true_if_the_class_type_match_for_my_second_provider()
+	{
+		$provider = new ProviderFactory(new MyProvider());
+
+		$this->assertEquals(MyProvider::class, get_class($provider->provider));
+	}
 
 }
