@@ -50,4 +50,22 @@ class MobileTest extends TestCase
 		$this->assertEquals(Exception::class, get_class($e));
 	}
 
+	/** @test */
+	public function it_returs_a_message_if_the_contact_number_is_valid()
+	{
+		try {
+			$provider = new MyProvider();
+
+			$mobile = new Mobile($provider);
+
+			$result = $mobile->SendMessageByName('Andres', 'Hi there!');
+
+		} catch (\Throwable $th) {
+			echo $e->getMessage();
+		}
+
+		$this->assertEquals($result, "The message 'Hi there!' was sent to 953486446");
+	}
+
+
 }

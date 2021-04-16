@@ -19,6 +19,11 @@ class MyProvider implements CarrierInterface {
         return new Call;
     }
 
+    public function sendMessage(string $number, string $message) : string
+    {
+        return "The message '{$message}' was sent to {$number}";
+    }
+
 }
 
 ?>

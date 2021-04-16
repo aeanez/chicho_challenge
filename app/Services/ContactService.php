@@ -21,6 +21,10 @@ class ContactService
 				'name' => 'Gianncarlo',
 				'number' => '999777555'
 			],
+			[
+				'name' => 'Wrong',
+				'number' => '1234'
+			],
 		];
 
 		$key = array_search($name, array_column($contacts, 'name'));
@@ -38,6 +42,6 @@ class ContactService
 	public static function validateNumber(string $number): bool
 	{
 		// logic to validate numbers
-		return true;
+		return preg_match("/^[0-9]{9}+$/", $number);
 	}
 }
